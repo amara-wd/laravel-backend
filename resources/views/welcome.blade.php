@@ -32,45 +32,60 @@
     </style>
 </head>
 
-<body class="font-sans antialiased">
-    <div class="min-h-screen flex items-center justify-center">
-        <div class="text-center space-y-4">
-            {{-- <h1 class="text-4xl font-bold text-blue-600 dark:text-blue-400">
-                Welcome to Laravel + Tailwind
-            </h1>
-            <p class="text-lg">
-                You're now using a Blade view styled with Tailwind CSS and system-aware dark mode.
-            </p>
-            <p class="text-sm text-gray-500 dark:text-gray-400">
-                Happy coding!
-            </p>
+<body class="font-sans antialiased bg-gray-500">
+    <div class="min-h-screen flex items-center justify-center px-4">
+        <div class="w-full max-w-xl text-center space-y-6">
+            
+            <!-- Form Header -->
+            <div class="border-b-2 border-blue-500 p-2 text-lg font-semibold">
+                Post a Tweet
+            </div>
 
-            <h1 class="text-xl text-gray-700">
-                My message is: {{ $message }}
-            </h1>
+            <!-- Tweet Form -->
+            <form action="/tweets" method="POST" class="space-y-4">
+                @csrf
+                <input 
+                    type="text" 
+                    name="body" 
+                    placeholder="What's happening?" 
+                    class="w-full p-3 border-2 border-blue-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                >
+                <button 
+                    type="submit" 
+                    class="bg-yellow-300 text-gray-800 font-semibold py-2 px-6 rounded-full hover:bg-yellow-400 transition"
+                >
+                    Tweet
+                </button>
+            </form>
 
-            <h1 class="text-3xl font-bold underline text-blue-600">
-                Hello world!
-            </h1> --}}
-<div> Form goes here </div>
-<form action="/tweets" method="POST" class="mb-20">
-    @csrf
-    <input type="text" name="body" class="mb-4 w-full p-2 border-2 border-blue-500" placeholder="what's happening?">
-    <button type="submit" class="bg-yellow-300 text-gray-800 py-3 px-6 rounded-full">Tweet
-    </button>
-     </form>
-            {{-- Tweets Section --}}
-            @foreach ($tweets as $tweet)
-                <div class="border-b-2 border-blue-500 p-2">
-                    <form>
-                     <input type="text"   value=" {{ $tweet->body }}">
-                     <button type="submit"> Edit</button>
-                    </form>
-                </div>
-            @endforeach
+            <!-- Tweets Section -->
+            <div class="space-y-4">
+                @foreach ($tweets as $tweet)
+                    <div class="border-b-2 border-blue-500 p-2">
+                        <form action="/tweets/{{ $tweet->id }}" method="POST" class="flex items-center space-x-2">
+                            @csrf
+                            @method('PUT')
+                            <input 
+                                type="text" 
+                                name="body" 
+                                value="{{ $tweet->body }}" 
+                                class="bg-white border border-gray-300 py-2 px-4 rounded-full text-black w-full focus:outline-none focus:ring-2 focus:ring-blue-300"
+                            >
+                            <button 
+                                type="submit" 
+                                class="bg-blue-300 text-blue-900 py-2 px-4 rounded-full hover:bg-blue-400 transition"
+                            >
+                                Edit
+                            </button>
+                        </form>
+                    </div>
+                @endforeach
+            </div>
+
         </div>
     </div>
 </body>
+
 
 </html>
 

@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Models\Tweet;
-use App\Http\Controllers\TweetController;
+use App\Http\Controllers\TweetAPIController;
 
 // Route::get('/', function () {
 //     return Inertia::render('welcome', ['message' => 'hey there i am amara']);
@@ -14,7 +14,7 @@ Route::get('/', function () {
     'tweets' => $tweets]);
 });
 
-Route::resource('tweets', TweetController::class);
+Route::resource('tweets', TweetAPIController::class);
  
 // Route::post('/tweets', function ($request) {
 //    dd($request->input()->all()) ;

@@ -59,7 +59,7 @@ class TweetController extends Controller
     {
         $data=$request->all();
         $tweet->update($data);
-        return redirect('/tweets/' . $tweet->id);
+        return redirect('/');
     }
 
     /**
