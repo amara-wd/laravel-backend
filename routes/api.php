@@ -5,10 +5,16 @@ use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\API\CategoryController;
 
 
 
+Route::apiResource('categories', CategoryController::class);
+Route::prefix('v1')->group(function(){
+Route::apiResource('posts', PostController::class);
+});
 
+Route::get('comments/{id}');
 
 
 //http://127.0.0.1:8000/api/testing-the-api  
