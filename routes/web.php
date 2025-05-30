@@ -14,11 +14,11 @@ Route::get('/', function () {
     'tweets' => $tweets]);
 });
 
-Route::get('/{slug}', function ($slug) {
-    $post=\App\Models\Post::whereSlug($slug)->first();
-    return view('post', ['post'=> $post]);
+// Route::get('/{slug}', function ($slug) {
+//     $post=\App\Models\Post::whereSlug($slug)->first();
+//     return view('post', ['post'=> $post]);
     
-});
+// });
 
 Route::resource('tweets', TweetAPIController::class);
  
